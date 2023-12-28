@@ -230,7 +230,7 @@ void initVao() {
 }
 
 void setModel(float elapsed, mat4 dest) {
-    float part = fmodf(elapsed, 5000.0f) / 30000.0f;
+    float part = fmodf(elapsed, 20000.0f) / 25000.0f;
     float angle = M_PI * 2.0f * part;
     mRotateYMatr(angle, dest);
 }
@@ -248,7 +248,7 @@ void display() {
     glBindVertexArray(vao);
 
     glUniform3fv(viewPosLoc, 1, cam.eye);
-    glUniform3f(lightPosLoc, 2.0f, 2.0f, 2.0f);
+    glUniform3f(lightPosLoc, 5.0f, 5.0f, 0.0f);
     glUniform3f(lightColorLoc, 1.0f, 1.0f, 1.0f);
 
     mat4 view;
@@ -347,6 +347,12 @@ int main(int argc, char *argv[]) {
     glutMotionFunc(motion);
     glutPassiveMotionFunc(motion);
     init();
+    glBegin(GL_QUADS);
+    glVertex3f(-3, -3, -3);
+    glVertex3f(-3, 3, -3);
+    glVertex3f(3, -3, -3);
+    glVertex3f(3, 3, -3);
+    glEnd();
     glutMainLoop();
     return 0;
 }
